@@ -6,6 +6,7 @@
 #include <unistd.h>
 
 BaseSocket::BaseSocket(int domain, int socketType, int protocol, int port, u_long interface) {
+  this->port = port;
 
   std::cout << "Creating socket for port: " << port << std::endl;
 
@@ -20,7 +21,7 @@ BaseSocket::BaseSocket(int domain, int socketType, int protocol, int port, u_lon
               << std::endl;
   }
 
-  std::cout << "Socket returned: " << socketFileDecriptor << std::endl;
+  std::cout << "Socket created " << socketFileDecriptor << std::endl;
 }
 
 BaseSocket::~BaseSocket() { close(socketFileDecriptor); }
