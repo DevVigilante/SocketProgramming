@@ -8,13 +8,12 @@ class BaseSocket {
 protected:
   int socketFileDecriptor;
   struct sockaddr_in address;
+  virtual void attachSocketToAddress() = 0;
 
 public:
   BaseSocket(int domain, int socketType, int protocol, int port, u_long interface);
 
   ~BaseSocket();
-
-  virtual void attachSocketToAddress() = 0;
 };
 
 #endif
