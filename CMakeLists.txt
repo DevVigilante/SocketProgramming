@@ -9,6 +9,7 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 add_executable(CppHttpServer
     src/main.cpp
     src/BaseSocket.cpp
+    src/ServerSocket.cpp
 )
 
 target_include_directories(CppHttpServer PRIVATE
