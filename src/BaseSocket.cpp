@@ -23,7 +23,4 @@ BaseSocket::BaseSocket(int domain, int socketType, int protocol, int port, u_lon
   std::cout << "Socket returned: " << socketFileDecriptor << std::endl;
 }
 
-BaseSocket::~BaseSocket() {
-  // std::cout << "Closing socket with descriptor: " << socketFileDecriptor << std::endl;
-  // close(socketFileDecriptor);
-}
+BaseSocket::~BaseSocket() { close(socketFileDecriptor); }
