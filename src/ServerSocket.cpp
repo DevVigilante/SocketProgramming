@@ -11,7 +11,8 @@ ServerSocket::ServerSocket(int domain, int socketType, int protocol, int port, u
 }
 
 void ServerSocket::attachSocketToAddress() {
-  int bindingResult = bind(socketFileDecriptor, (struct sockaddr *)&address, sizeof(address));
+  struct sockaddr *addressPtr = (struct sockaddr *)&address;
+  int bindingResult = bind(socketFileDecriptor, addressPtr, sizeof(address));
   if (bindingResult == -1) {
     std::cerr << "\033[31mFailed to bind socket to the port: " << port << std::endl;
     std::cerr << "Message: " << std::strerror(errno) << std::endl;
