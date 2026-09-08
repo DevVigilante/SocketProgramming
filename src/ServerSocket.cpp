@@ -4,6 +4,7 @@
 #include <iostream>
 #include <stdexcept>
 #include <sys/socket.h>
+#include <unistd.h>
 
 ServerSocket::ServerSocket(int domain, int socketType, int protocol, int port, u_long interface)
     : BaseSocket(domain, socketType, protocol, port, interface) {
@@ -50,4 +51,18 @@ void ServerSocket::acceptClients() {
   }
 
   std::cout << "Client connected. Socket: " << clientSocket << std::endl;
+  char buffer[10];
+  ssize_t bytesRead = recv(clientSocket, buffer, sizeof(buffer) - 1, 0);
+
+  if (bytesRead == -1) {
+    std::cerr << "Failed to read request of client: " << clientSocket << "\n";
+    std::cerr << "Message: " << std::strerror(errno) << std::endl;
+    std::cerr << "error(" << errno << ")\n";
+  }
+
+  if (bytesRead == 0) {
+    std::cerr << "Client closed connection" << std::endl;
+    close(clientSocket);
+    return;
+  }
 }
