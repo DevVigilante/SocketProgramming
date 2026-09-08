@@ -9,6 +9,7 @@ ServerSocket::ServerSocket(int domain, int socketType, int protocol, int port, u
     : BaseSocket(domain, socketType, protocol, port, interface) {
   attachSocketToAddress();
   listenForConnection(10);
+  acceptClients();
 }
 
 void ServerSocket::attachSocketToAddress() {
@@ -47,4 +48,6 @@ void ServerSocket::acceptClients() {
 
     return;
   }
+
+  std::cout << "Client connected. Socket: " << clientSocket << std::endl;
 }
