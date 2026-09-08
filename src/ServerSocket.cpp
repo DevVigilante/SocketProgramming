@@ -59,9 +59,9 @@ void ServerSocket::acceptClients() {
     ssize_t bytesRead = recv(clientSocket, buffer, sizeof(buffer), 0);
 
     if (bytesRead == -1) {
-      std::cerr << "Failed to read request of client: " << clientSocket << "\n";
+      std::cerr << "\033[31mFailed to read request of client: " << clientSocket << "\n";
       std::cerr << "Message: " << std::strerror(errno) << std::endl;
-      std::cerr << "error(" << errno << ")\n";
+      std::cerr << "error(" << errno << ")\033[0m\n";
       return;
     }
 
