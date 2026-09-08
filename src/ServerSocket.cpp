@@ -36,3 +36,15 @@ void ServerSocket::listenForConnection(int maxConn) {
     throw std::runtime_error(message);
   }
 }
+
+void ServerSocket::acceptClients() {
+  int clientSocket = accept(socketFileDecriptor, nullptr, nullptr);
+
+  if (clientSocket == -1) {
+    std::cerr << "\033[31mFailed to accept connection\033[0m\n";
+    std::cerr << "Message: " << std::strerror(errno) << std::endl;
+    std::cerr << "error(" << errno << ")\n";
+
+    return;
+  }
+}

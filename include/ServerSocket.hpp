@@ -10,6 +10,7 @@ public:
 
   void attachSocketToAddress();
   void listenForConnection(int maxConnection);
+  void acceptClients();
 };
 
 #endif
