@@ -7,8 +7,9 @@ class ServerSocket : public BaseSocket {
 
 public:
   ServerSocket(int domain, int socketType, int protocol, int port, u_long interface);
-  
+
   void attachSocketToAddress();
+  void listenForConnection(int maxConnection);
 };
 
 #endif
